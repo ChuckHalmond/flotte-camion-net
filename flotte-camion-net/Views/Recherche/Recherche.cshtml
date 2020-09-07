@@ -1,0 +1,109 @@
+﻿@model TP3_NET.Models.Recherche.Recherche
+
+@{
+    ViewBag.Title = "Recherche de livraisons";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Recherche de livraisons</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <hr/>
+    <div class="row">
+        
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("Nom")
+                @Html.EditorFor(model => model.NomClient, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.NomClient, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("Date de la commande")
+                @Html.EditorFor(model => model.DateCommande, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.DateCommande, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("Immatriculation de la remorque")
+                @Html.EditorFor(model => model.ImmatricultionRemorque, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.ImmatricultionRemorque, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("Immatriculation du camion")
+                @Html.EditorFor(model => model.ImmatricultionCamion, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.ImmatricultionCamion, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("Nom du conducteur")
+                @Html.EditorFor(model => model.NomConducteur, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.NomConducteur, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("Date de départ")
+                @Html.EditorFor(model => model.DateDepart, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.DateDepart, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("Date d'arrivée")
+                @Html.EditorFor(model => model.DateArrivee, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.DateArrivee, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("Ville de départ")
+                @Html.EditorFor(model => model.VilleDepart, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.VilleDepart, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("Ville d'arrivée")
+                @Html.EditorFor(model => model.VilleArrivee, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.VilleArrivee, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        @* <div class="form-group">
+            @Html.LabelFor(model => model.TypeMarchandise, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TypeMarchandise, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.TypeMarchandise, "", new {@class = "text-danger"})
+            </div>
+        </div>*@
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.Label("État de la livraison")
+                @Html.EditorFor(model => model.EtatLivraison, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.EtatLivraison, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <button class="btn btn-primary" type="submit">Rechercher</button>
+            </div>
+        </div>
+    </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

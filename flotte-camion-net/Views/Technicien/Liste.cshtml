@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TP3_NET.Models.Employe.Technicien>
+
+@{
+    ViewBag.Title = "Liste des techniciens";
+}
+
+<h2>Liste des techniciens</h2>
+
+<p>
+    @Html.ActionLink("Créer un technicien", "Creer")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenom)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Modifier", new {id = item.IdEmploye}) |
+                @Html.ActionLink("Consulter", "Consulter", new {id = item.IdEmploye}) |
+                @Html.ActionLink("Supprimer", "Delete", new {id = item.IdEmploye})
+            </td>
+        </tr>
+    }
+</table>

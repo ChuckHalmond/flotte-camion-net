@@ -1,0 +1,28 @@
+﻿@model TP3_NET.Models.Utilitaire.Paire<TP3_NET.Models.Marchandise.Marchandise, int>
+
+@{
+    Layout = null;
+}
+
+<h5>Marchandise @(Model.Item2 + 1)</h5>
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Item1.Nom)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Item1.Nom)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Item1.TypeMarchandise)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Item1.TypeMarchandise)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Item1.Volume)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Item1.Volume)
+    </dd>
+</dl>

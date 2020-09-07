@@ -1,0 +1,191 @@
+﻿@model TP3_NET.Models.Commande.CommandeViewModel
+
+@{
+    ViewBag.Title = "Créer une commande";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Création d'une commande</h2>
+
+@using (Html.BeginForm("CreerPost", "Commande"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Nouvelle commande</h4>
+        <hr />
+        @Html.ValidationSummary(true, "Le formulaire contient des erreurs, validation impossible.", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DepartSouhaitee, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.DepartSouhaitee, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DepartSouhaitee, new { htmlAttributes = new { @class = "form-control", @type = "date", @value = DateTime.Today.AddDays(1).ToString("yyyy-MM-dd") } })
+            @Html.ValidationMessageFor(model => model.DepartSouhaitee, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+        <!-- Lieu de départ -->
+
+        <p>Lieu de départ</p>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RueAD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.RueAD, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RueAD, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.RueAD, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.RueAD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComplementAD, htmlAttributes: new { @class = "control-label col-md-12" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.ComplementAD, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ComplementAD, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.ComplementAD, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.ComplementAD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VilleAD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.VilleAD, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VilleAD, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.VilleAD, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.VilleAD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaysAD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.PaysAD, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaysAD, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.PaysAD, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.PaysAD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CodePostalAD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.CodePostalAD, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CodePostalAD, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.CodePostalAD, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.CodePostalAD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Lieu d'arrivée -->
+
+        <p>Lieu d'arrivée</p>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RueAA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.RueAA, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RueAA, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.RueAA, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.RueAA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComplementAA, htmlAttributes: new { @class = "control-label col-md-12" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.ComplementAA, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ComplementAA, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.ComplementAA, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.ComplementAA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VilleAA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.VilleAA, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VilleAA, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.VilleAA, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.VilleAA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaysAA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.PaysAA, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaysAA, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.PaysAA, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.PaysAA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CodePostalAA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.CodePostalAA, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CodePostalAA, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.CodePostalAA, ViewData).Watermark } })
+                @Html.ValidationMessageFor(model => model.CodePostalAA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Frequence, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <div class="col-md-auto">
+                <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.Frequence, ViewData).Description</small>
+            </div>
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Frequence, new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.Frequence, ViewData).Watermark })
+                @Html.ValidationMessageFor(model => model.Frequence, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <button id="submit" type="submit" value="Modifier la commande" class="invisible"></button>
+    </div>
+
+    @Html.ValidationMessageFor(model => model.Marchandises, "", new { @class = "text-danger" })
+}
+
+@{
+    Html.RenderAction("ListeModifiable", "Marchandise", new { marchandises = Model.Marchandises });
+}
+
+<hr />
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button id="remote-submit" type="button" value="Passer la commande" class="btn btn-primary">
+            Passer la commande
+        </button>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Retour aux commandes", "Liste")
+</div>

@@ -1,0 +1,34 @@
+﻿@using TP3_NET.Models.Compte
+@{
+    ViewBag.Title = "Accueil";
+}
+
+<div class="jumbotron">
+    <h1>Flotte de camions</h1>
+    @if (Session["compteID"] == null)
+    {
+        <p class="lead">
+            Bienvenue sur votre application de gestion de flotte de camions.
+            Pour réaliser une commande veuillez vous connecter ou vous inscrire.
+        </p>
+        <p>
+            <a href="@Url.Action("Enregistrement", "Client")" class="btn btn-secondary">S'enregistrer</a>
+            <a href="@Url.Action("Connexion", "Compte")" class="btn btn-primary">Se connecter</a>
+        </p>
+    }
+    else if (Session["typeCompte"] != null && Session["typeCompte"].Equals(TypeCompte.Client))
+    {
+        <p class="lead">
+            @Session["messageBienvenue"] sur votre application de gestion de flotte de camions.
+            Pour réaliser une commande utilisez le menu ci-dessus !
+        </p>
+    }
+    else if (Session["typeCompte"] != null && Session["typeCompte"].Equals(TypeCompte.Operateur))
+    {
+        <p class="lead">
+            @Session["messageBienvenue"] sur votre application de gestion de flotte de camions.
+            Vous pouvez gérer les employés, remorques et camions à l'aide du menu gestion.
+            De même vous pouvez valider les commandes et rechercher des livraisons grâce aux menus ci-dessus !
+        </p>
+    }
+</div>

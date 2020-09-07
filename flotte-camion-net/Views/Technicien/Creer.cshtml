@@ -1,0 +1,106 @@
+﻿@using TP3_NET.Models.Employe
+@model TP3_NET.Models.Employe.Technicien
+
+@{
+    ViewBag.Title = "Création d'un technicien";
+}
+
+<h2>Création d'un technicien</h2>
+
+<form action="@Url.Action("Creer")" method="post">
+    <div>
+        <hr/>
+        @Html.ValidationSummary(true, "", new
+        {
+            @class = "text-danger"
+        })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nom, new
+            {
+                @class = "control-label col-md-2"
+            })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Nom, new
+                {
+                    @class = "form-control"
+                })
+                @Html.ValidationMessageFor(model => model.Nom, "", new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Prenom, new
+            {
+                @class = "control-label col-md-2"
+            })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Prenom, new
+                {
+                    @class = "form-control"
+                })
+                @Html.ValidationMessageFor(model => model.Prenom, "", new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+        </div>
+
+        @if (Model != null) {
+            <div class="form-group">
+                <div class="col-md-10">
+                    <ul class="list-group">
+                        @{
+                            if (Model.Competences != null)
+                            {
+                                foreach (var competence in Model.Competences)
+                                {
+                                    <li class="list-group-item">@competence.TypeCompetence</li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ValidationMessage("ActionMessage", null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+                <button type="submit" class="btn btn-primary">Créer le conducteur</button>
+            </div>
+        </div>
+    </div>
+</form>
+<form action="@Url.Action("AjouterCompetence")" method="post">
+    <div>
+        <div class="form-group">
+            <label for="competence" class="control-label col-md-12">Ajouter une compétence</label>
+            <div class="col-md-10">
+                <select class="form-control" id="competence" name="competence">
+                    @foreach (var competence in Enum.GetNames(typeof(Competence.EnumCompetence)))
+                    {
+                        <option>@competence</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-secondary">Ajouter la compétence</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    @Html.ActionLink("Retour à la liste des technicien", "Liste")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

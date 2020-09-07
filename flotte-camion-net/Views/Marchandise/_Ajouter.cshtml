@@ -1,0 +1,52 @@
+﻿@model TP3_NET.Models.Marchandise.Marchandise
+
+@{
+    Layout = null;
+}
+
+@using (Ajax.BeginForm("AjouterPost", "Marchandise", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "marchandises", OnSuccess = "ajaxUnobstrusiveValidation" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.Nom, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(model => model.Nom, ViewData).Watermark } })
+            @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TypeMarchandise, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br/>
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.TypeMarchandise, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.TypeMarchandise, ModelMetadata.FromLambdaExpression(model => model.TypeMarchandise, ViewData).Watermark, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TypeMarchandise, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Volume, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.Volume, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Volume, new { htmlAttributes = new { @class = "form-control", @type = "number", @placeholder = ModelMetadata.FromLambdaExpression(model => model.Volume, ViewData).Watermark } })
+            @Html.ValidationMessageFor(model => model.Volume, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Ajouter la marchandise" class="btn btn-primary" />
+        </div>
+    </div>
+ }

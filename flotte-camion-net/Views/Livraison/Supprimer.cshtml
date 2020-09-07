@@ -1,0 +1,94 @@
+﻿@model TP3_NET.Models.Livraison.Livraison
+
+@{
+    ViewBag.Title = "Supprimer la commande";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Supprimer la livraison</h2>
+
+<h3>Êtes vous sûr de vouloir supprimer cette livraison ?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Commande);
+        </dt>
+
+        <dd>
+            @Html.ActionLink(Model.Commande.IdCommande + " (" + Model.Commande.DateCommande + ")", "Consulter", "Commande", new { id = Model.Commande.IdCommande })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Prenom + " " + model.Client.Nom)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conducteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conducteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDepart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDepart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateArrivee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateArrivee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Camion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Camion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remorque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remorque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EtatLivraison)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EtatLivraison)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Itineraire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Itineraire)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("SupprimerPost", "Commande", new { id = Model.IdCommande }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer la commande" class="btn btn-primary" /> |
+            @Html.ActionLink("Retour aux commandes", "Liste")
+        </div>
+    }
+</div>

@@ -1,0 +1,55 @@
+﻿@model TP3_NET.Models.Livraison.LivraisonViewModel
+
+@{
+    ViewBag.Title = "Consultation de livraison";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Livraison n°@Model.IdLivraison</h2>
+
+<div>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCommande)
+        </dt>
+        <dd>
+            @Html.ActionLink("Commande n°" + Model.IdCommande, "MaCommande", "Commande", new { id = Model.IdCommande }, null)
+        </dd>
+
+        @{
+            List<TP3_NET.Models.Marchandise.Marchandise> marchandisesLivraison = Session["MarchandisesLivraison"] as List<TP3_NET.Models.Marchandise.Marchandise>;
+            Html.RenderAction("ListeConsultable", "Marchandise", new { marchandises = marchandisesLivraison });
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDepart)
+        </dt>
+        <dd>
+            @((Model.DateDepart == default(DateTime)) ? new HtmlString("En attente") : Html.DisplayFor(model => model.DateDepart))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateArrivee)
+        </dt>
+        <dd>
+            @((Model.DateArrivee == default(DateTime)) ? new HtmlString("En attente") : Html.DisplayFor(model => model.DateArrivee))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EtatLivraison)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EtatLivraison)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Itineraire)
+        </dt>
+        <dd>
+            @Model.Itineraire
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Retour à mes livraisons", "MesLivraisons")
+</p>

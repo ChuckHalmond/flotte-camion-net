@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TP3_NET.Models.Livraison.LivraisonViewModel>
+
+@{
+    ViewBag.Title = "Liste des commandes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Livraisons</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCommande);
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NbMarchandises)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDepart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateArrivee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EtatLivraison)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.ActionLink("Commande n°" + item.IdCommande, "Consulter", "Commande", new { id = item.IdCommande }, null)
+        </td>
+        <td>
+            @("Client n°" + item.IdClient)
+        </td>
+        <th>
+            @item.NbMarchandises
+        </th>
+        <td>
+            @((item.DateDepart == default(DateTime)) ? new HtmlString("À définir") : Html.DisplayFor(modelItem => item.DateDepart))
+        </td>
+        <td>
+            @((item.DateArrivee == default(DateTime)) ? new HtmlString("À définir") : Html.DisplayFor(modelItem => item.DateArrivee))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EtatLivraison)
+        </td>
+        <td>
+            @Html.ActionLink("Confirmer", "Confirmer", new { id = item.IdLivraison }, htmlAttributes: new { @class = (item.EtatLivraison == TP3_NET.Models.Livraison.EtatLivraison.EnPreparation) ? "" : "disabled" }) | 
+            @Html.ActionLink("Consulter", "Consulter", new { id = item.IdLivraison })
+        </td>
+    </tr>
+    }
+
+</table>

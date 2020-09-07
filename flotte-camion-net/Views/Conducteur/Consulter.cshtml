@@ -1,0 +1,32 @@
+﻿@model TP3_NET.Models.Employe.Conducteur
+
+@{
+    ViewBag.Title = "Consultation d'un conducteur";
+}
+
+<h2>Consultation d'un conducteur</h2>
+
+<div>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+    </dl>
+    <a class="btn btn-primary" href="@Url.Action("Modifier", new {id = Model.IdEmploye})">Modifier le conducteur</a>
+</div>
+<div class="mt-2">
+    @Html.ActionLink("Retour à la liste des conducteurs", "Liste")
+</div>

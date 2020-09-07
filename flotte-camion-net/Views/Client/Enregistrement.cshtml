@@ -1,0 +1,201 @@
+﻿@model TP3_NET.Models.Client.Client
+
+@{
+    ViewBag.Title = "Enregistrement";
+}
+
+<div class="card mx-auto w-75">
+    <form action="@Url.Action("Enregistrement")" method="post" class="card-body">
+        <h3 class="card-title">Enregistrement</h3>
+        <h6 class="card-subtitle mt-3">Informations personnelles</h6>
+
+        <div class="row">
+            <div class="form-group col-md-12 col-lg-6">
+                @Html.Label("Prénom *")
+                @Html.TextBoxFor(client => client.Prenom, new
+                {
+                    @class = "form-control",
+                    placeholder = "Saisissez votre prénom",
+                    required = "required",
+                    maxlength = 50
+                })
+                @Html.ValidationMessageFor(client => client.Prenom, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+            <div class="form-group col-md-12 col-lg-6">
+                @Html.Label("Nom *")
+                @Html.TextBoxFor(client => client.Nom, new
+                {
+                    @class = "form-control",
+                    placeholder = "Saisissez votre nom",
+                    required = "required",
+                    maxlength = 50
+                })
+                @Html.ValidationMessageFor(client => client.Nom, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+            <div class="form-group col-md-12 col-lg-6">
+                @Html.Label("Entreprise")
+                @Html.TextBoxFor(client => client.Entreprise, new
+                {
+                    @class = "form-control",
+                    placeholder = "Example.com",
+                    maxlength = 50
+                })
+                @Html.ValidationMessageFor(client => client.Entreprise, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+            <div class="form-group col-md-12 col-lg-6">
+                @Html.Label("Téléphone")
+                @Html.TextBoxFor(client => client.Telephone, new
+                {
+                    type = "tel",
+                    @class = "form-control",
+                    pattern = "^(?:0|\\(?\\+33\\)?\\s?|0033\\s?)[1-79](?:[\\.\\-\\s]?\\d\\d){4}$",
+                    placeholder = "Votre +33623589845",
+                    maxlength = 12
+                })
+                @Html.ValidationMessageFor(client => client.Telephone, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+        </div>
+
+        <h6 class="card-subtitle mt-3">Informations de l'adresse</h6>
+        <div class="row">
+            <div class="form-group col-md-12 col-lg-6">
+                @Html.Label("Adresse *")
+                @Html.TextBoxFor(client => client.Adresse.Rue, new
+                {
+                    @class = "form-control",
+                    placeholder = "15 Rue des champs de Paris",
+                    required = "required",
+                    maxlength = 25
+                })
+                @Html.ValidationMessageFor(client => client.Adresse.Rue, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+            <div class="form-group col-md-12 col-lg-6">
+                @Html.Label("Complément d'adresse")
+                @Html.TextBoxFor(client => client.Adresse.Complement, new
+                {
+                    @class = "form-control",
+                    placeholder = "Bâtiment B, Appartement 556, 13 bis",
+                    maxlength = 25
+                })
+                @Html.ValidationMessageFor(client => client.Adresse.Complement, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+            <div class="form-group col-sm-12 col-md-6">
+                @Html.Label("Ville *")
+                @Html.TextBoxFor(client => client.Adresse.Ville, new
+                {
+                    @class = "form-control",
+                    placeholder = "Rennes",
+                    required = "required",
+                    maxlength = 25
+                })
+                @Html.ValidationMessageFor(client => client.Adresse.Ville, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+            <div class="form-group col-sm-12 col-md-6">
+                @Html.Label("Pays *")
+                @Html.TextBoxFor(client => client.Adresse.Pays, new
+                {
+                    @class = "form-control",
+                    placeholder = "France",
+                    required = "required",
+                    maxlength = 25
+                })
+                @Html.ValidationMessageFor(client => client.Adresse.Pays, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+            <div class="form-group col-sm-12 col-md-6">
+                @Html.Label("Code postal *")
+                @Html.TextBoxFor(client => client.Adresse.CodePostal, new
+                {
+                    @class = "form-control",
+                    placeholder = "35000",
+                    required = "required",
+                    maxlength = 10
+                })
+                @Html.ValidationMessageFor(client => client.Adresse.CodePostal, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+        </div>
+
+        <h6 class="card-subtitle mt-3">Informations du compte</h6>
+        <div class="row">
+            <div class="form-group col-md-12 col-lg-6">
+                @Html.Label("Adresse mail *")
+                @Html.TextBoxFor(client => client.Compte.Email, new
+                {
+                    type = "email",
+                    @class = "form-control",
+                    pattern = "[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
+                    placeholder = "john.doe@example.com",
+                    required = "required",
+                    maxlength = 25
+                })
+                @Html.ValidationMessageFor(client => client.Compte.Email, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12 col-lg-6">
+                @Html.Label("Mot de passe *")
+                @Html.PasswordFor(client => client.Compte.MotDePasse, new
+                {
+                    @class = "form-control",
+                    placeholder = "•••••••••",
+                    required = "required",
+                    minlength = 6,
+                    maxlength = 50
+                })
+                @Html.ValidationMessageFor(client => client.Compte.MotDePasse, null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+            <div class="form-group col-md-12 col-lg-6">
+                <label>Répétition du mot de passe *</label>
+                @Html.Password("password", null, new
+                {
+                    @class = "form-control",
+                    placeholder = "•••••••••",
+                    required = "required",
+                    minlength = 6,
+                    maxlength = 50
+                })
+                @Html.ValidationMessage("password", null, new
+                {
+                    @class = "form-text text-danger font-weight-bold"
+                }, "small")
+            </div>
+        </div>
+        @Html.ValidationMessage("ActionMessage", null, new
+        {
+            @class = "form-text text-danger font-weight-bold mb-1"
+        }, "small")
+        <button class="btn btn-primary" type="submit">S'enregistrer</button>
+    </form>
+</div>

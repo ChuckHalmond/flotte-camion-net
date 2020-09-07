@@ -1,0 +1,86 @@
+﻿@model TP3_NET.Models.Livraison.LivraisonViewModel
+
+@{
+    ViewBag.Title = "Consultation de livraison";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Livraison n°@Model.IdLivraison</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </dt>
+        <dd>
+            @(new HtmlString("Client n°" + Model.IdClient))
+        </dd>
+    </dl>
+
+    @{
+        List<TP3_NET.Models.Marchandise.Marchandise> marchandisesLivraison = Session["MarchandisesLivraison"] as List<TP3_NET.Models.Marchandise.Marchandise>;
+        Html.RenderAction("ListeConsultable", "Marchandise", new { marchandises = marchandisesLivraison });
+    }
+
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCommande)
+        </dt>
+        <dd>
+            @Html.ActionLink("Commande n°" + Model.IdCommande, "Consulter", "Commande", new { id = Model.IdCommande }, null)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdConducteur)
+        </dt>
+        <dd>
+            @((Model.IdConducteur == 0) ? new HtmlString("À définir") : @Html.ActionLink("Employé n° " + Model.IdConducteur, "Consulter", "Conducteur", new { id = Model.IdConducteur }, null))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDepart)
+        </dt>
+        <dd>
+            @((Model.DateDepart == default(DateTime)) ? new HtmlString("À définir") : Html.DisplayFor(model => model.DateDepart))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateArrivee)
+        </dt>
+        <dd>
+            @((Model.DateArrivee == default(DateTime)) ? new HtmlString("À définir") : Html.DisplayFor(model => model.DateArrivee))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCamion)
+        </dt>
+        <dd>
+            @((Model.IdCamion == 0) ? new HtmlString("À définir") : Html.ActionLink("Camion n°" + Model.IdCamion, "Consulter", "Camion", new { id = Model.IdCamion }, null))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdRemorque)
+        </dt>
+
+        <dd>
+            @((Model.IdRemorque == 0) ? new HtmlString("À définir") : Html.ActionLink("Remorque n°" + Model.IdRemorque, "Consulter", "Remorque", new { id = Model.IdRemorque }, null))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EtatLivraison)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EtatLivraison)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Itineraire)
+        </dt>
+        <dd>
+            @Model.Itineraire
+        </dd>
+    </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Confirmer", "Confirmer", new { id = Model.IdLivraison }) |
+        @Html.ActionLink("Retour aux livraisons", "Liste")
+    </p>

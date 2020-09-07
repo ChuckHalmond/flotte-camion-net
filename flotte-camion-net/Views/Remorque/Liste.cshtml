@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TP3_NET.Models.Camion.Remorque>
+
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Liste des remorques</h2>
+
+<p>
+    @Html.ActionLink("Créer une nouvelle remorque", "Creer")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Immatriculation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixJournalier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capacite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeMarchandise)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Immatriculation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrixJournalier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Capacite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeMarchandise)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Modifier", new { id=item.IdRemorque }) |
+            @Html.ActionLink("Consulter", "Consulter", new { id=item.IdRemorque }) |
+            @Html.ActionLink("Supprimer", "Supprimer", new { id=item.IdRemorque })
+        </td>
+    </tr>
+}
+
+</table>

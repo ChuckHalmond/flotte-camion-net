@@ -1,0 +1,17 @@
+﻿@model IEnumerable<TP3_NET.Models.Marchandise.Marchandise>
+
+@{
+    Layout = null;
+}
+
+<h4>Marchandises</h4>
+<hr />
+
+@{
+    int idx = 0;
+    foreach (var marchandise in Model)
+    {
+        Html.RenderAction("Consulter", "Marchandise", new { marchandise, idx });
+        idx++;
+    }
+}

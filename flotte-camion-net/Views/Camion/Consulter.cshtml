@@ -1,0 +1,51 @@
+﻿@model TP3_NET.Models.Camion.Camion
+
+@{
+    ViewBag.Title = "Consulter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Consultation d'un camion</h2>
+
+<div>
+    <h4>Camion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Immatriculation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Immatriculation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrixJournalier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixJournalier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capacite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Capacite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EtatCamion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EtatCamion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Modifier", new { id = Model.IdCamion }) |
+    @Html.ActionLink("Retours à la liste des camions", "Liste")
+</p>

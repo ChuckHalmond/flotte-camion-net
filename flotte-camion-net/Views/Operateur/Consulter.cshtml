@@ -1,0 +1,39 @@
+﻿@model TP3_NET.Models.Employe.Operateur
+
+@{
+    ViewBag.Title = "Consultation d'un employé";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Consultation d'un employé</h2>
+
+<div>
+    <h4>Opérateur</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compte.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compte.Email)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Modifier", new {id = Model.IdEmploye}) |
+    @Html.ActionLink("Retour à la liste des opérateurs", "Liste")
+</p>

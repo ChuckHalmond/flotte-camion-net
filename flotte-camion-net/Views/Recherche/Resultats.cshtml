@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TP3_NET.Models.Livraison.Livraison>
+
+@{
+    ViewBag.Title = "Résultats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Résultats</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Nom et prénom
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDepart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateArrivee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commande.DateCommande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EtatLivraison)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.Nom) @Html.DisplayFor(modelItem => item.Client.Prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateArrivee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commande.DateCommande)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EtatLivraison)
+            </td>
+            <td>
+                <button onclick="@Html.Action("Consulter", "Livraison", new {id = item.IdLivraison})">Consulter</button>
+            </td>
+        </tr>
+    }
+
+</table>

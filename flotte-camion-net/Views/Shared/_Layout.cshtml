@@ -1,0 +1,109 @@
+﻿@using TP3_NET.Models.Compte
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/favicon.jpg">
+    <title>@ViewBag.Title - Flotte de camions</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="navbar navbar-expand-lg fixed-top navbar-light bg-white border-bottom box-shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="@Url.Action("Index", "Accueil")">
+                <span class="logo">
+                    <img src="~/favicon.jpg" width="30" height="30" alt="logo" />
+                </span>
+                <span class="px-1">Flotte de camions</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav mr-auto">
+                    @if (Session["typeCompte"] != null && Session["typeCompte"].Equals(TypeCompte.Client))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Creer", "Commande")">Passer une commande</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("MesCommandes", "Commande")">Mes commandes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("MesLivraisons", "Livraison")">Mes livraisons</a>
+                        </li>
+                    }
+                    else if (Session["typeCompte"] != null && Session["typeCompte"].Equals(TypeCompte.Operateur))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="dropdownGestion" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Gestion des employés
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownGestion">
+                                <a class="dropdown-item text-dark" href="@Url.Action("Liste", "Technicien")">Techniciens</a>
+                                <a class="dropdown-item text-dark" href="@Url.Action("Liste", "Operateur")">Opérateurs</a>
+                                <a class="dropdown-item text-dark" href="@Url.Action("Liste", "Conducteur")">Conducteurs</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="dropdownVehicule" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Gestion des véhicules
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownVehicule">
+                                <a class="dropdown-item text-dark" href="@Url.Action("Liste", "Camion")">Camions</a>
+                                <a class="dropdown-item text-dark" href="@Url.Action("Liste", "Remorque")">Remorques</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="@Url.Action("Liste", "Commande")">Liste des commandes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="@Url.Action("Liste", "Livraison")">Livraisons en cours</a>
+                        </li>
+                    }
+                </ul>
+                <ul class="navbar-nav">
+                    @if (Session["typeCompte"] != null && Session["typeCompte"].Equals(TypeCompte.Client))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="@Url.Action("Profil", "Client")">Profil</a>
+                        </li>
+                    }
+                    @if (Session["compteID"] == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="@Url.Action("Enregistrement", "Client")">Enregistrement</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="@Url.Action("Connexion", "Compte")">Connexion</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="@Url.Action("Deconnexion", "Client")">Déconnexion</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content mt-5">
+        @RenderBody()
+        <hr class="mt-4" />
+        <footer>
+            <p>&copy;Copyright @DateTime.Now.Year - Flotte de camions</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/global")
+    @RenderSection("scripts", false)
+</body>
+</html>

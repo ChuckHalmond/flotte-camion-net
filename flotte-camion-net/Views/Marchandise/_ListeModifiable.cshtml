@@ -1,0 +1,26 @@
+﻿@model IEnumerable<TP3_NET.Models.Marchandise.Marchandise>
+
+@{
+    Layout = null;
+}
+
+<div id="marchandises">
+
+    <h4>Marchandises</h4>
+    <hr />
+
+    @{
+        int idx = 0;
+        foreach (var marchandise in Model)
+        {
+            Html.RenderAction("Modifier", "Marchandise", new { marchandise, idx });
+            Html.RenderAction("Supprimer", "Marchandise", new { idx });
+
+            ++idx;
+        }
+
+        Html.RenderAction("Ajouter", "Marchandise");
+    }
+
+</div>
+

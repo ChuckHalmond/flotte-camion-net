@@ -1,0 +1,51 @@
+﻿@model TP3_NET.Models.Camion.Remorque
+
+@{
+    ViewBag.Title = "Consulter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Consultation d'une remorque</h2>
+
+<div>
+    <h4>Remorque</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Immatriculation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Immatriculation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrixJournalier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixJournalier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capacite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Capacite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeMarchandise)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeMarchandise)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Modifier", new { id = Model.IdRemorque }) |
+    @Html.ActionLink("Retour à la liste des remorques", "Liste")
+</p>

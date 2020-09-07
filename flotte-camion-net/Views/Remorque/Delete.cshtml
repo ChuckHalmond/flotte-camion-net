@@ -1,0 +1,57 @@
+﻿@model TP3_NET.Models.Camion.Remorque
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Remorque</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Immatriculation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Immatriculation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrixJournalier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixJournalier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capacite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Capacite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeMarchandise)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeMarchandise)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="submit" class="btn btn-primary">Supprimer</button>|
+            @Html.ActionLink("Retour à la liste des remorques", "Index")
+        </div>
+    }
+</div>

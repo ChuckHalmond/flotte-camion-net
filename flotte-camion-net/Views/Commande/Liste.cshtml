@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TP3_NET.Models.Commande.CommandeViewModel>
+
+@{
+    ViewBag.Title = "Liste des commandes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Liste des commandes</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCommande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartSouhaitee)
+        </th>
+        <th>
+            Ville de départ
+        </th>
+        <th>
+            Ville d'arrivée
+        </th>
+        <th>
+            Nombre de marchandises
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCommande)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartSouhaitee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VilleAD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VilleAA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marchandises.Count)
+            </td>
+            <td>
+                @Html.ActionLink("Consulter", "Consulter", new { id = item.IdCommande }) | 
+                @Html.ActionLink("Supprimer", "Supprimer", new { id = item.IdCommande })
+            </td>
+        </tr>
+    }
+
+</table>

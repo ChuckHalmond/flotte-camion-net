@@ -1,0 +1,16 @@
+﻿@model  int
+
+@{
+    Layout = null;
+}
+
+@using (Ajax.BeginForm("SupprimerPost", "Marchandise", new { idx = Model }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "marchandises" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Supprimer la marchandise" class="btn btn-primary" />
+        </div>
+    </div>
+}

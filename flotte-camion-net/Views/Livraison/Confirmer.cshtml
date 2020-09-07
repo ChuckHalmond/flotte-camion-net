@@ -1,0 +1,160 @@
+﻿@model TP3_NET.Models.Livraison.LivraisonViewModel
+
+@{
+    ViewBag.Title = "Confirmation de livraison";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Confirmation de la livraison n°@Model.IdLivraison</h2>
+
+@using (Html.BeginForm("ConfirmerPost", "Livraison"))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "Le formulaire contient des erreurs, validation impossible.", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.IdLivraison)
+    @Html.HiddenFor(model => model.IdClient)
+    @Html.HiddenFor(model => model.IdCommande)
+    @Html.HiddenFor(model => model.IdItineraire)
+
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#informations" role="button" aria-expanded="false" aria-controls="informations">Informations de la livraison</a>
+    </p>
+    <div class="collapse multi-collapse" id="informations">
+        <div class="card card-body">
+
+            <!-- IdClient -->
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdClient)
+                </dt>
+                <dd>
+                    @(new HtmlString("Client n°" + Model.IdClient))
+                </dd>
+            </dl>
+
+            <!-- IdCommande -->
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdCommande)
+                </dt>
+                <dd>
+                    @Html.ActionLink("Commande n°" + Model.IdCommande, "Consulter", "Commande", new { id = Model.IdCommande }, null)
+                </dd>
+            </dl>
+
+            <!-- Marchandises -->
+
+            @{
+                List<TP3_NET.Models.Marchandise.Marchandise> marchandisesLivraison = Session["MarchandisesLivraison"] as List<TP3_NET.Models.Marchandise.Marchandise>;
+                Html.RenderAction("ListeConsultable", "Marchandise", new { marchandises = marchandisesLivraison });
+            }
+        </div>
+    </div>
+
+    <!-- DateDepart -->
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateDepart, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.DateDepart, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateDepart, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.DateDepart, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- DateArrivee -->
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateArrivee, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.DateArrivee, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateArrivee, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.DateArrivee, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Conducteur -->
+
+    @{
+        IEnumerable<SelectListItem> conducteursItems = Session["ConducteursItems"] as IEnumerable<SelectListItem>;
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdConducteur, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.IdConducteur, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.IdConducteur, new SelectList(conducteursItems, "Value", "Text"), ModelMetadata.FromLambdaExpression(model => model.IdConducteur, ViewData).Watermark, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdConducteur, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Camion -->
+
+    @{
+        IEnumerable<SelectListItem> camionsItems = Session["CamionsItems"] as IEnumerable<SelectListItem>;
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdCamion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.IdCamion, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.IdCamion, new SelectList(camionsItems, "Value", "Text"), ModelMetadata.FromLambdaExpression(model => model.IdCamion, ViewData).Watermark, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdCamion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Remorque -->
+
+    @{
+        IEnumerable<SelectListItem> remorquesItems = Session["RemorquesItems"] as IEnumerable<SelectListItem>;
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdRemorque, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.IdRemorque, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.IdRemorque, new SelectList(remorquesItems, "Value", "Text"), ModelMetadata.FromLambdaExpression(model => model.IdRemorque, ViewData).Watermark, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdRemorque, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Itineraire -->
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Itineraire, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-auto">
+            <small class="text-muted">@ModelMetadata.FromLambdaExpression(model => model.Itineraire, ViewData).Description</small>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Itineraire, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+    </div>
+
+    <input id="submit" type="submit" value="Confirmer la livraison" class="btn btn-primary" />
+</div>
+}
+
+<div>
+    @Html.ActionLink("Retour aux livraisons", "Liste")
+</div>
